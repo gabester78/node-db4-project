@@ -30,13 +30,13 @@ exports.up = function (knex) {
     .createTable("steps", (tbl) => {
       tbl.increments();
       tbl.text("recipe_step", 255).notNullable();
+      tbl.text("instructions", 255).notNullable();
       tbl
         .integer("recipe_id")
         .unsigned()
         .references("recipes.id")
         .onDelete("RESTRICT") // RESTRICT, CASCADE, SET NULL, DO NOTHING
         .onUpdate("CASCADE");
-      tbl.integer("quantity").unsigned().notNullable();
     });
 };
 
